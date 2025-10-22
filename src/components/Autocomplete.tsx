@@ -17,11 +17,13 @@ export const Autocomplete: React.FC<Props> = ({
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const filteredPeople = useMemo(() => {
-    if (!query) {
+    const trimmedQuery = query.trim();
+
+    if (!trimmedQuery) {
       return people;
     }
 
-    const lower = query.toLowerCase();
+    const lower = trimmedQuery.toLowerCase();
 
     return people.filter(p => p.name.toLowerCase().includes(lower));
   }, [query, people]);
